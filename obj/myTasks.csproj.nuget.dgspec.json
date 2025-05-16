@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\raony\\dev\\MyTasks\\myTasks.csproj": {}
+    "C:\\Users\\raony\\dev\\myTasks\\myTasks.csproj": {}
   },
   "projects": {
-    "C:\\Users\\raony\\dev\\MyTasks\\myTasks.csproj": {
+    "C:\\Users\\raony\\dev\\myTasks\\myTasks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\raony\\dev\\MyTasks\\myTasks.csproj",
+        "projectUniqueName": "C:\\Users\\raony\\dev\\myTasks\\myTasks.csproj",
         "projectName": "myTasks",
-        "projectPath": "C:\\Users\\raony\\dev\\MyTasks\\myTasks.csproj",
+        "projectPath": "C:\\Users\\raony\\dev\\myTasks\\myTasks.csproj",
         "packagesPath": "C:\\Users\\raony\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\raony\\dev\\MyTasks\\obj\\",
+        "outputPath": "C:\\Users\\raony\\dev\\myTasks\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\raony\\AppData\\Roaming\\NuGet\\NuGet.Config"

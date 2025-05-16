@@ -5,11 +5,11 @@ namespace MyTasks.Interfaces
 
     public interface InterfaceTodoService
     {
-        Task<IEnumerable<Todo>> GetTodosByUserId(int userId);
-        Task<Todo?> GetTodoById(int id);
-        Task<Todo> CreateTodo(int userId, Todo todo);
-        Task<Todo?> UpdateTodo(int id, Todo todo);
-        Task<bool> DeleteTodo(int id);
+        Task<ResponseModel<IEnumerable<Todo>>> GetTodosByUserId(int userId);
+        Task<ResponseModel<Todo?>> GetTodoById(int id);
+        Task<ResponseModel<Todo>> CreateTodo(int userId, Todo todo);
+        Task<ResponseModel<Todo?>> UpdateTodo(int id, Todo todo);
+        Task<ResponseModel<bool>> DeleteTodo(int id);
     }
 
 
