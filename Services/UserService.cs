@@ -22,24 +22,36 @@ namespace myTasks.Services
             try
             {
                 var users = await _context.User.ToListAsync();
-        
+
                 response.Data = users;
+
+                if (users.Count == 0)
+                {
+                    response.Message = "Nenhum usuario encontrado";
+                    response.Status = 404;
+                    response.Success = true;
+
+                    return response;
+                }
+
                 response.Message = "Todos os usuários foram retornados";
                 response.Success = true;
+
+                return response;
 
 
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Message = error.Message;
                 response.Success = false;
-            }
 
-            return response;
-            
+                return response;
+            }    
         }
 
-        //Se o usuário existir retorna seus dados e suas "to do" tasks
+        //Se o usuário existir retorna seus dados e suas "to do"
         public async Task<ResponseModel<User?>> GetUserById(int id)
         {
 
@@ -55,6 +67,7 @@ namespace myTasks.Services
                     response.Data = null;
                     response.Message = "Usuário não localizado!";
                     response.Success = false;
+                    response.Status = 404;
                     return response;
                 }
 
@@ -66,6 +79,7 @@ namespace myTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = null;
                 response.Message =error.Message;
                 response.Success = false;
@@ -94,6 +108,7 @@ namespace myTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Message = error.Message;
                 response.Success = false;
                 return response;
@@ -114,6 +129,7 @@ namespace myTasks.Services
 
                 if (user is null)
                 {
+                    response.Status = 404;
                     response.Data = null;
                     response.Message = "Nenhum usuário encontrado";
                     response.Success = false;
@@ -136,6 +152,7 @@ namespace myTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Message = error.Message;
                 response.Success = false;
                 return response;
@@ -156,6 +173,7 @@ namespace myTasks.Services
                 var user = await _context.User.FindAsync(id);
                 if (user is null)
                 {
+                    response.Status = 404;
                     response.Data = false;
                     response.Message = "Nenhum usuario encontrado";
                     response.Success = false;
@@ -176,6 +194,7 @@ namespace myTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Message = error.Message;
                 response.Success = false;
 

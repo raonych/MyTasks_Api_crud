@@ -20,6 +20,7 @@ namespace MyTasks.Services
                 var todos = await _context.Todo.Where(todo => todo.UserId == userId).ToListAsync();
                 if (todos.Count == 0)
                 {
+                    response.Status = 404;
                     response.Data = null;
                     response.Message = "Este usuário não possui nenhuma tarefa";
                     response.Success = true;
@@ -36,6 +37,7 @@ namespace MyTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = null;
                 response.Message = error.Message;
                 response.Success = false;
@@ -53,6 +55,7 @@ namespace MyTasks.Services
                 var todo = await _context.Todo.Include(todo => todo.User).FirstOrDefaultAsync(todo => todo.Id == id);
                 if (todo is null)
                 {
+                    response.Status = 404;
                     response.Data = null;
                     response.Message = "Tarefa não encontrada";
                     response.Success = false;
@@ -69,6 +72,7 @@ namespace MyTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = null;
                 response.Message = error.Message;
                 response.Success = false;
@@ -95,6 +99,7 @@ namespace MyTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = todo;
                 response.Message = error.Message;
                 response.Success = false;
@@ -113,6 +118,7 @@ namespace MyTasks.Services
                 var todo = await _context.Todo.FindAsync(id);
                 if (todo is null)
                 {
+                    response.Status = 404;
                     response.Data = null;
                     response.Message = "Tarefa não encontrada";
                     response.Success = false;
@@ -133,6 +139,7 @@ namespace MyTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = updated;
                 response.Message = error.Message;
                 response.Success = false;
@@ -150,6 +157,7 @@ namespace MyTasks.Services
                 var todo = await _context.Todo.FindAsync(id);
                 if (todo is null)
                 {
+                    response.Status = 404;
                     response.Data = false;
                     response.Message = "Tarefa não encontrada";
                     response.Success = false;
@@ -168,6 +176,7 @@ namespace MyTasks.Services
             }
             catch (Exception error)
             {
+                response.Status = 500;
                 response.Data = false;
                 response.Message = error.Message;
                 response.Success = false;
