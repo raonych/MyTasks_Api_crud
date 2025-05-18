@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MyTasks.Models;
 using MyTasks.Interfaces;
 using MyTasks.Data;
+using MyTasks.DTOs;
 
 namespace MyTasks.Services
 {
@@ -82,12 +83,18 @@ namespace MyTasks.Services
             
         }
 
-        public async Task<ResponseModel<Todo>> CreateTodo(int userId, Todo todo)
+        public async Task<ResponseModel<Todo>> CreateTodo(int userId, CreateTodoDto createTodoDto)
         {
             ResponseModel<Todo> response = new();
             try
             {
-                todo.UserId = userId;
+                var todo = new Todo()
+                {
+                    UserId = userId,
+                    Title = createTodoDto.Title,
+                    Done = createTodoDto.Done
+                };
+
                 _context.Todo.Add(todo);
                 await _context.SaveChangesAsync();
 
@@ -100,7 +107,6 @@ namespace MyTasks.Services
             catch (Exception error)
             {
                 response.Status = 500;
-                response.Data = todo;
                 response.Message = error.Message;
                 response.Success = false;
 

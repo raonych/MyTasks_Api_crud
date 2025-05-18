@@ -3,7 +3,7 @@ using MyTasks.Models;
 using MyTasks.Interfaces;
 using MyTasks.Data;
 
-namespace myTasks.Services
+namespace MyTasks.Services
 {
     public class UserService : InterfaceUserService
     {

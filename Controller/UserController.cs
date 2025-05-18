@@ -30,9 +30,25 @@ namespace MyTasks.Controller
         [HttpPost]
         public async Task<ActionResult<ResponseModel<User>>> CreateUser([FromBody] User body)
         {
-            var user = await _service.CreateUser(body); 
-           
-           return StatusCode(user.Status, user);
+            var user = await _service.CreateUser(body);
+
+            return StatusCode(user.Status, user);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResponseModel<User>>> UpdateUser([FromBody] User update, [FromRoute] int id)
+        {
+            var updatedUser = await _service.UpdateUser(id, update);
+
+            return StatusCode(updatedUser.Status, updatedUser);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ResponseModel<User>>> DeleteUser([FromRoute] int id)
+        {
+            var deletedUser = await _service.DeleteUser(id);
+
+            return StatusCode(deletedUser.Status, deletedUser);
         }
     }
 } 
